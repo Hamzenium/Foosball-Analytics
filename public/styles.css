@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin: 20px;
+}
+
+#mat-container {
+    margin: 20px auto;
+    width: 800px;
+    height: 600px;
+    position: relative;
+}
+
+canvas {
+    border: 2px solid #000;
+    background-color: #f0f0f0;
+}
+
+#controls {
+    margin: 20px auto;
+    width: 800px;
+    text-align: center;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#score-status,
+div {
+    margin: 10px 0;
+}
+
+input[type="text"] {
+    padding: 5px;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+input[type="checkbox"] {
+    margin-left: 10px;
+}
