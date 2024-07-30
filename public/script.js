@@ -20,12 +20,19 @@ const drawBoard = () => {
         ctx.lineTo(canvas.width, y);
     }
     
-    // Draw vertical lines
-    const verticalSpacing = canvas.width / 3;
-    ctx.moveTo(verticalSpacing, 0);
-    ctx.lineTo(verticalSpacing, canvas.height);
-    ctx.moveTo(2 * verticalSpacing, 0);
-    ctx.lineTo(2 * verticalSpacing, canvas.height);
+    // Draw vertical lines with twice the space between them
+    const totalWidth = canvas.width;
+    const thirdWidth = totalWidth / 3;
+    const spacingBetweenLines = 2 * thirdWidth; // 2/3 of the canvas width
+
+    // Calculate the positions of the vertical lines
+    const startX = (totalWidth - spacingBetweenLines) / 2;
+    const endX = startX + spacingBetweenLines;
+
+    ctx.moveTo(startX, 0);
+    ctx.lineTo(startX, canvas.height);
+    ctx.moveTo(endX, 0);
+    ctx.lineTo(endX, canvas.height);
 
     ctx.stroke();
 };
