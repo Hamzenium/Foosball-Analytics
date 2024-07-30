@@ -22,6 +22,7 @@
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "firebase-admin": "^12.3.0",
+    "firebase-tools": "^13.14.2",
     "path": "^0.12.7"
   }
 }
