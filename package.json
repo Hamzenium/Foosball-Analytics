@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/Hamzenium/Foosball-Analytics/issues"
   },
-  "homepage": "https://github.com/Hamzenium/Foosball-Analytics#readme"
+  "homepage": "https://github.com/Hamzenium/Foosball-Analytics#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "path": "^0.12.7"
+  }
 }
