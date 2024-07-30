@@ -95,7 +95,7 @@ document.getElementById('export-btn').addEventListener('click', () => {
         'Scored': scoringStatus ? 'Yes' : 'No'
     };
 
-    fetch('http://localhost:3000/save-data', {
+    fetch('https://foosball-ai-c97c13f1b078.herokuapp.com/save-data', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
