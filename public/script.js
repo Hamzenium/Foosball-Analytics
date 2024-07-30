@@ -35,26 +35,51 @@ const drawBoard = () => {
     ctx.lineTo(endX, canvas.height);
 
     ctx.stroke();
+
+    // Draw X and Y coordinate labels
+    ctx.font = '12px Arial';
+    ctx.fillStyle = 'black';
+
+    // Draw X-axis labels
+    const xInterval = canvas.width / 10;
+    for (let i = 0; i <= 10; i++) {
+        const x = i * xInterval;
+        ctx.fillText(x.toFixed(0), x + 5, canvas.height - 5);
+    }
+
+    // Draw Y-axis labels
+    const yInterval = canvas.height / 10;
+    for (let i = 0; i <= 10; i++) {
+        const y = i * yInterval;
+        
+    }
 };
 
 const drawPoints = () => {
-    // Define colors for different pairs of points
-    const colors = ['red', 'blue', 'green'];
+    // Define colors for different points
+    const colors = ['red', 'black', 'black', 'green', 'green', 'blue', 'blue']; // Added colors for 7 points
 
     points.forEach((point, index) => {
         // Select color based on index
-        const color = colors[Math.floor(index / 2) % colors.length];
+        const color = colors[index % colors.length];
         ctx.fillStyle = color;
 
+        // Draw square points with size 20 (4 times the current size of 5)
+        const size = 20;
+
         ctx.beginPath();
-        ctx.arc(point.x, point.y, 5, 0, 2 * Math.PI);
+        ctx.rect(point.x - size / 2, point.y - size / 2, size, size);
         ctx.fill();
+
+        // Label the point coordinates
+        ctx.font = '12px Arial';
+        ctx.fillStyle = 'black';
+        ctx.fillText(`(${point.x.toFixed(0)}, ${point.y.toFixed(0)})`, point.x + size / 2, point.y - size / 2);
     });
 };
 
-
 canvas.addEventListener('click', (event) => {
-    if (points.length < 6) {
+    if (points.length < 7) { // Updated limit to 7 points
         const rect = canvas.getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
@@ -80,22 +105,24 @@ document.getElementById('export-btn').addEventListener('click', () => {
 
     const singleRecord = {
         'Player Name': playerName,
-        'Foosball Start X': points[0]?.x || '',
-        'Foosball Start Y': points[0]?.y || '',
-        'Foosball End X': points[1]?.x || '',
-        'Foosball End Y': points[1]?.y || '',
-        'Goalkeeper Start X': points[2]?.x || '',
-        'Goalkeeper Start Y': points[2]?.y || '',
-        'Goalkeeper Start 2 X': points[3]?.x || '',
-        'Goalkeeper Start 2 Y': points[3]?.y || '',
-        'Goalkeeper End 1 X': points[4]?.x || '',
-        'Goalkeeper End 1 Y': points[4]?.y || '',
-        'Extra Point End 2 X': points[5]?.x || '',
-        'Extra Point End 2 Y': points[5]?.y || '',
+        'Stick 1 X': points[0]?.x || '',
+        'Stick 1 Y': points[0]?.y || '',
+        'Stick 2 X': points[1]?.x || '',
+        'Stick 2 Y ': points[1]?.y || '',
+        'Shot X': points[2]?.x || '',
+        'Shot Y': points[2]?.y || '',
+        'Goalkeeper Stick 1 X Initial': points[3]?.x || '',
+        'Goalkeeper Stick 1 Y Initial': points[3]?.y || '',
+        'Goalkeeper Stick 2 X Initial': points[4]?.x || '',
+        'Goalkeeper Stick 2 Y Initial': points[4]?.y || '',
+        'Goalkeeper Stick 1 X After': points[5]?.x || '',
+        'Goalkeeper Stick 1 Y After': points[5]?.y || '',
+        'Goalkeeper Stick 2 X After': points[6]?.x || '', // Added Foosball Shot point
+        'Goalkeeper Stick 2 Y After': points[6]?.y || '', // Added Foosball Shot point
         'Scored': scoringStatus ? 'Yes' : 'No'
     };
 
-    fetch('http://localhost:3000/save-data', {
+    fetch('https://foosball-ai-c97c13f1b078.herokuapp.com//save-data', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
